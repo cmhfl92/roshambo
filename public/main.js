@@ -10,7 +10,10 @@ const playerIncrement = () => {
  // Put it back on screen
   $('.scores .player').textContent = playerScore
 
-  if (playerScore === 2) {
+  $('figure.player').className = 'player win'
+  $('figure.computer').className = 'computer lose'
+
+  if (playerScore === 3) {
     gameOver(true)
   }
 }
@@ -21,7 +24,10 @@ const computerIncrement = () => {
   const computerScore = parseInt(computerScoreText) + 1
   $('.scores .computer').textContent = computerScore
 
-  if (computerScore === 2) {
+  $('figure.computer').className = 'computer win'
+  $('figure.player').className = 'player lose'
+
+  if (computerScore === 3) {
     gameOver(false)
   }
 }
@@ -40,21 +46,19 @@ const handleButtonClick = (event) => {
   }
   if (player === 'rock' && computer === 'rock') {
     console.log('it\'s a draw')
+    $('figure.computer').className = 'computer draw'
+    $('figure.player').className = 'player draw'
   }
   if (player === 'rock' && computer === 'scissors') {
     playerIncrement()
-  //   // Get the player score as text
-  //   const playerScoreText = $('.scores .player').textContent
-  //  // Convert that to a number
-  //   const playerScore = parseInt(playerScoreText)
-  //  // Add one to it
-  //   const newPlayerScore = playerScore + 1
-  //  // Put it back on screen
+
     $('.scores .player').textContent = newPlayerScore
     playerIncrement()
   }
   if (player === 'paper' && computer === 'paper') {
     console.log('it\'s a draw')
+    $('figure.computer').className = 'computer draw'
+    $('figure.player').className = 'player draw'
   }
   if (player === 'paper' && computer === 'rock') {
     playerIncrement()
@@ -70,12 +74,16 @@ const handleButtonClick = (event) => {
   }
   if (player === 'scissors' && computer === 'scissors') {
     console.log('it\'s a draw')
+    $('figure.computer').className = 'computer draw'
+    $('figure.player').className = 'player draw'
   }
 
 //   // HINT: Check for win, lose or draw, then call `gameOver()` eventually.
 
   if (player === 'rock' && computer === 'rock') {
     console.log('it\'s a draw')
+    $('figure.computer').className = 'computer draw'
+    $('figure.player').className = 'player draw'
   }
 }
 
@@ -92,6 +100,9 @@ const gameOver = (playerDidWin) => {
     $('.dialog h3').textContent = 'You lost!'
   }
   $('body').className = 'modal'
+
+  $('.scores .computer').textContent = 0
+  $('.scores .player').textContent = 0
 }
 
 const resetGame = () => {
